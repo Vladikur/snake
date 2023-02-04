@@ -1,29 +1,27 @@
-import food from './../../images/food.png';
-
 export default class Food {
     constructor(ctx, box) {
         this._ctx = ctx
         this._box = box
-        this._foodImg = null
 
         this.position = null
-
-        this._create()
-    }
-
-    _create() {
-        this._foodImg = new Image()
-        this._foodImg.src = food
     }
 
     init() {
         this.position = {
-            x: Math.floor(Math.random() * 17 + 1) * this._box,
-            y: Math.floor(Math.random() * 15 + 3) * this._box
+            x: Math.floor(Math.random() * 15) * this._box,
+            y: Math.floor(Math.random() * 15) * this._box
         }
     }
 
     render() {
-        this._ctx.drawImage(this._foodImg, this.position.x, this.position.y)
+        this._ctx.beginPath();
+        const x = this.position.x + this._box / 2
+        const y = this.position.y + this._box / 2
+        const radius = this._box / 3
+        const startAngle = 0
+        const endAngle = Math.PI * 2
+        this._ctx.fillStyle = "#dc475c"
+        this._ctx.arc(x, y, radius, startAngle, endAngle);
+        this._ctx.fill();
     }
 }

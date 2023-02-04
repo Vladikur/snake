@@ -1,17 +1,17 @@
 export default class Score {
-    constructor(ctx, box) {
-        this._ctx = ctx
-        this._box = box
+    constructor() {
+        this.scoreElement = document.querySelector('.js-score')
         this.score = 0
+
+        this._create()
     }
 
-    render() {
-        this._ctx.fillStyle = "white"
-        this._ctx.font = "50px Arial"
-        this._ctx.fillText(String(this.score), this._box * 2.5, this._box * 1.7)
+    _create() {
+        this.scoreElement.textContent = this.score
     }
 
     add() {
         this.score ++
+        this._create()
     }
 }

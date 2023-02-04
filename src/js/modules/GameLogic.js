@@ -52,24 +52,24 @@ export default class GameLogic {
     }
 
     borderMode(head) {
-        if (head.x < this._box || head.x > this._box * 17
-            || head.y < 3 * this._box || head.y > this._box * 17) {
+        if (head.x < 1 * this._box || head.x > this._box * 13
+            || head.y < 1 * this._box || head.y > this._box * 13) {
             return true
         }
     }
 
     freeMode(head) {
-        if (head.x < 2 * this._box && this._dir === this._direction.l) {
-            head.x = 18 * this._box
+        if (head.x < 1 * this._box && this._dir === this._direction.l) {
+            head.x = 15 * this._box
         }
-        if (head.x > 16 * this._box && this._dir === this._direction.r) {
-            head.x = 0
+        if (head.x > 13 * this._box && this._dir === this._direction.r) {
+            head.x = -1 * this._box
         }
-        if (head.y < 4 * this._box && this._dir === this._direction.u) {
-            head.y = 18 * this._box
+        if (head.y < 1 * this._box && this._dir === this._direction.u) {
+            head.y = 15 * this._box
         }
-        if (head.y > 16 * this._box && this._dir === this._direction.d) {
-            head.y = 2 * this._box
+        if (head.y > 13 * this._box && this._dir === this._direction.d) {
+            head.y = -1 * this._box
         }
         return head
     }

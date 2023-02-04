@@ -9,18 +9,23 @@ import Params from "./modules/Params";
 
 class GameSnake {
     constructor() {
-        this.canvas = document.getElementById("snake")
+        this.canvas = document.querySelector(".js-canvas")
+
         if (!this.canvas) return
 
         this.ctx = this.canvas.getContext("2d")
         this.game = null
         this.box = 32
+        this.map = 480
+
+        this.canvas.width = this.map
+        this.canvas.height = this.map
 
         this.food = new Food(this.ctx, this.box)
-        this.ground = new Ground(this.ctx)
+        this.ground = new Ground(this.ctx, this.map)
         this.snake = new Snake(this.ctx, this.box)
         this.logic = new GameLogic(this.box)
-        this.score = new Score(this.ctx, this.box)
+        this.score = new Score(this.game)
         this.params = new Params()
 
         this.food.init()
@@ -28,10 +33,10 @@ class GameSnake {
     }
 
     _drawGame() {
+        this.ctx.clearRect(0, 0, this.map, this.map);
         this.ground.render()
         this.food.render()
         this.snake.render()
-        this.score.render()
 
         if (!this.logic.isPause) {
             let newHead = {
@@ -48,8 +53,8 @@ class GameSnake {
 
             this.logic.checkDir()
 
-            //const isSnakeOnBorder = this.logic.borderMode(newHead)
-            //if (isSnakeOnBorder) this._stopGame()
+            // const isSnakeOnBorder = this.logic.borderMode(newHead)
+            // if (isSnakeOnBorder) this._stopGame()
 
             newHead = this.logic.freeMode(newHead)
 

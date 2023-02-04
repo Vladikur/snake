@@ -1,19 +1,11 @@
-import ground from './../../images/ground.png';
-
 export default class Ground {
-    constructor(ctx) {
+    constructor(ctx, map) {
         this._ctx = ctx
-        this.groundImg = null
-
-        this._create()
-    }
-
-    _create() {
-        this.groundImg = new Image()
-        this.groundImg.src = ground
+        this._map = map
     }
 
     render() {
-        this._ctx.drawImage(this.groundImg, 0, 0)
+        this._ctx.fillStyle = '#2e3146'
+        this._ctx.fillRect(0, 0, this._map, this._map)
     }
 }
