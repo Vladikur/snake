@@ -10,6 +10,11 @@ export default class Score {
         this.scoreElement.textContent = this.score
     }
 
+    reset() {
+        this.score = 0
+        this._create()
+    }
+
     add() {
         this.score ++
         this._create()

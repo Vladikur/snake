@@ -9,6 +9,8 @@ import Params from "./modules/Params";
 
 class GameSnake {
     constructor() {
+        this.btnRestart = document.querySelector(".js-restart")
+        this.popup = document.querySelector(".js-popup-game-over")
         this.canvas = document.querySelector(".js-canvas")
 
         if (!this.canvas) return
@@ -29,6 +31,21 @@ class GameSnake {
         this.params = new Params()
 
         this.food.init()
+        this._addListeners()
+        this._runGame()
+    }
+
+    _addListeners() {
+        this.btnRestart.addEventListener('click', this._restartGame.bind(this))
+    }
+
+    _restartGame() {
+        this.popup.classList.remove('_visible')
+
+        this.score.reset()
+        this.snake.reset()
+        this.logic.reset()
+
         this._runGame()
     }
 
@@ -69,6 +86,8 @@ class GameSnake {
 
     _stopGame() {
         clearInterval(this.game)
+
+        this.popup.classList.add('_visible')
     }
 
     _runGame() {

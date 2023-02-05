@@ -20,7 +20,7 @@ export default class Food {
         const radius = this._box / 3
         const startAngle = 0
         const endAngle = Math.PI * 2
-        this._ctx.fillStyle = "#dc475c"
+        this._ctx.fillStyle = "#ca354a"
         this._ctx.arc(x, y, radius, startAngle, endAngle);
         this._ctx.fill();
     }

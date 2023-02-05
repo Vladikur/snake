@@ -1,5 +1,6 @@
 export default class GameLogic {
     constructor(box) {
+        this._popup = document.querySelector(".js-popup-pause")
         this._box = box
         this._dir = null
         this._newDir = null
@@ -10,16 +11,32 @@ export default class GameLogic {
             d: "down",
         }
         this.isPause = false
+        this._isGameOver = false
 
         document.addEventListener("keydown", this._eventHandler.bind(this))
     }
 
     _eventHandler(e) {
-        if (e.keyCode === 32) this.isPause = !this.isPause
+        if (e.keyCode === 32) this._pause()
         if (e.keyCode === 65) this._newDir = this._direction.l
         if (e.keyCode === 87) this._newDir = this._direction.u
         if (e.keyCode === 68) this._newDir = this._direction.r
         if (e.keyCode === 83) this._newDir = this._direction.d
+    }
+
+    _pause() {
+        if (!this._isGameOver) {
+            this.isPause = !this.isPause
+
+            if (this.isPause) this._popup.classList.add('_visible')
+            else this._popup.classList.remove('_visible')
+        }
+    }
+
+    reset() {
+        this._dir = null
+        this._newDir = null
+        this._isGameOver = false
     }
 
     checkDir() {
@@ -39,7 +56,9 @@ export default class GameLogic {
             }
         })
 
-        return isSnakeBiteYourself
+        this._isGameOver = isSnakeBiteYourself
+
+        return this._isGameOver
     }
 
     move(head) {
@@ -54,7 +73,8 @@ export default class GameLogic {
     borderMode(head) {
         if (head.x < 1 * this._box || head.x > this._box * 13
             || head.y < 1 * this._box || head.y > this._box * 13) {
-            return true
+            this._isGameOver = true
+            return this._isGameOver
         }
     }
 

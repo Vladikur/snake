@@ -4,11 +4,33 @@
 <main>
     <div class="snake-wrapper">
         <div class="snake">
-            <div class="snake__score">
-                <h3>Счёт: <span class="js-score"></span></h3>
+            <div class="snake__description">
+                <h4>Controls:</h4>
+                <p>Up - "W"</p>
+                <p>Left - "A"</p>
+                <p>Down - "S"</p>
+                <p>Right - "D"</p>
+                <p>Pause - "space"</p>
             </div>
 
-            <canvas class="js-canvas"></canvas>
+            <div class="snake__game">
+                <div class="snake__score">
+                    <h3>Score: <span class="js-score"></span></h3>
+                </div>
+
+                <div class="snake__canvas">
+                    <div class="snake__popup | js-popup-game-over">
+                        <h3>Game over</h3>
+                        <button class="js-restart">restart</button>
+                    </div>
+
+                    <div class="snake__popup | js-popup-pause">
+                        <h3>Pause</h3>
+                    </div>
+
+                    <canvas class="js-canvas"></canvas>
+                </div>
+            </div>
         </div>
     </div>
 </main>
